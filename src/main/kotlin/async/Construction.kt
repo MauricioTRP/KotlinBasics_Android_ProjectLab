@@ -48,13 +48,14 @@ fun main() {
             // Doors
             launch(Dispatchers.IO) {
                 val doors = order(Product.Doors)
+                throw Exception("No hay plata para las puertas")
                 bricksJob.join() // Esperar a que se instalen los ladrillos antes de instalar las puertas
                 withContext(Dispatchers.Default) {
+                    // cancel(message = "Nos arrepentimos de la construcción")
                     perform("Instalar puertas", doors)
                 }
             }
 
-            // cancel(message = "Nos arrepentimos de la construcción")
         }
     }
 
